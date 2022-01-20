@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Image from "../Image";
 import Loading from "../Loading";
-import { NASA_BASE_URL, NASA_API, API_KEY } from "../../constants";
+import { NASA_BASE_URL, NASA_API } from "../../constants";
 import { Typography } from "@mui/material";
 
 export default function List() {
@@ -20,11 +20,10 @@ export default function List() {
 
   useEffect(() => {
     fetch(
-      `${NASA_BASE_URL}${NASA_API}photos?earth_date=${whatWasYesterday()}&page=1&api_key=${API_KEY}`
+      `${NASA_BASE_URL}${NASA_API}photos?earth_date=${whatWasYesterday()}&page=1&api_key=${process.env.REACT_APP_API_KEY}`
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setImageList(data);
       });
 
